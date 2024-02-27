@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: profile-db
+    ports:
+      - "8088:5432"
+    environment:
+      POSTGRES_DB: profile
+      POSTGRES_USER: profile
+      POSTGRES_PASSWORD: profile
+    volumes:
+      - profile-db:/var/lib/postgresql/data
+
+  # myapp:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: my_java_app
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db_name
+  #     SPRING_DATASOURCE_USERNAME: db_username
+  #     SPRING_DATASOURCE_PASSWORD: db_password
+
+volumes:
+  profile-db:
