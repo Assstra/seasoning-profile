@@ -1,14 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:8088/profile
-    username: profile
-    password: profile
+    driver-class-name: org.postgresql.Driver
+    url: ${PROFILE_DB_URL:jdbc:postgresql://127.0.0.1:5432/profile}
+    username: ${PROFILE_DB_USER:profile}
+    password: ${PROFILE_DB_PWD:profile}
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true
 
 server:
-  port : 8084
+  port : ${PROFILE_MS_PORT:8084}
